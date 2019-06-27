@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/credentials"
@@ -9,7 +10,6 @@ import (
 	"github.com/aws/aws-sdk-go/service/sts"
 	"log"
 	"math/rand"
-	"os"
 	"strconv"
 	"time"
 )
@@ -61,7 +61,7 @@ func main() {
 		return
 	}
 
-	os.Setenv("AWS_SESSION_TOKEN", *result.Credentials.SessionToken)
-	os.Setenv("AWS_SECRET_ACCESS_KEY", *result.Credentials.SecretAccessKey)
-	os.Setenv("AWS_ACCESS_KEY_ID", *result.Credentials.AccessKeyId)
+	fmt.Printf("export AWS_SESSION_TOKEN=%s\n", *result.Credentials.SessionToken)
+	fmt.Printf("export AWS_SECRET_ACCESS_KEY=%s\n", *result.Credentials.SecretAccessKey)
+	fmt.Printf("export AWS_ACCESS_KEY_ID=%s\n", *result.Credentials.AccessKeyId)
 }
