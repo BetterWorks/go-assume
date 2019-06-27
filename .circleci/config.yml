@@ -1,0 +1,14 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.12
+    working_directory: /tmp/go-assume/
+    steps:
+      - checkout
+      - run: go get
+      - run: go test -v ./...
+      - run: mkdir -p build/
+      - run: go build -o build/go-assume-linux-amd64
+      - store_artifacts:
+          path: build/

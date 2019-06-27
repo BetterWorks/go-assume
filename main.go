@@ -22,6 +22,10 @@ func main() {
 
 	flag.Parse()
 
+	if len(*region) == 0 || len(*accessKeyId) == 0 || len(*secretAccessKey) == 0 || len(*assumeRoleArn) == 0 {
+		log.Fatal("All credentials not provided")
+	}
+
 	rand.Seed(time.Now().UnixNano())
 	sessionName := strconv.FormatUint(rand.Uint64(), 10)
 
